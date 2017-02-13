@@ -182,3 +182,22 @@ func InsertArticle(db *sql.DB, title string, body string) {
   - `ReadArticle()` は `Article` 構造体を返しましょう。
   - どの関数もエラーは必ず返すようにしましょう。
   - 作成した関数を read, update, delete 処理の際に呼び出し、結果を出力して下さい。
+
+## Web アプリケーションへの応用
+
+"github.com/Tamrin007/blogo" とは異なる新しいディレクトリを $GOPATH 内に作成して下さい。
+
+[gorilla/mux: A powerful URL router and dispatcher for golang.](https://github.com/gorilla/mux) のドキュメントを参考に、以下のルーティング、ハンドラを作成して下さい。
+
+- GET "/articles/{id}"
+  - `ReadArticleHandler`
+- POST "/articles/create"
+  - `CreateArticleHandler`
+  - パラメータに title, body
+- PUT "articles/{id}"
+  - `UpdateArticleHandler`
+  - パラメータに title, body
+- DELETE "articles/{id}"
+  - `DeleteArticleHandler`
+
+CLI で作成した "github.com/Tamrin007/blogo/db" をインポートし、それぞれのハンドラで利用して下さい。
