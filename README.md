@@ -49,7 +49,7 @@ import (
 )
 
 var (
-  createFlag *flag.FlagSet
+	createFlag *flag.FlagSet
 
 	id    int
 	title string
