@@ -91,3 +91,34 @@ func main() {
   - `read`: id
   - `update`: id, title, body
   - `delete`: id がそれぞれ必要です。
+
+### Step3. DB の準備
+
+Docker の mysql コンテナを立ち上げ、 bash にログインします。
+
+```sh
+docker pull mysql
+docker run --name go-seminar -e MYSQL_ROOT_PASSWORD=< お好きなパスワード > -d -p 3306:3306 mysql
+docker exec -it go-seminar /bin/bash
+```
+
+MySQL にログインします
+
+```sh
+mysql -u root -p
+```
+
+テーブルを作成しておきます。
+
+```sql
+CREATE TABLE `articles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `title` varchar(255) NOT NULL COMMENT 'title',
+  `body` varchar(255) NOT NULL COMMENT 'body',
+  `created` timestamp NOT NULL DEFAULT NOW() COMMENT 'when created',
+  `updated` timestamp NOT NULL DEFAULT NOW() ON UPDATE CURRENT_TIMESTAMP COMMENT 'when last updated',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='list of articles';
+```
+
+ここでレコードを入れておいてもいいでしょう。
