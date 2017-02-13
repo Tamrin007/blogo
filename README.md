@@ -78,7 +78,7 @@ func run() error {
 }
 
 func main() {
-	err = run()
+	err := run()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error: %s\n", err.Error())
 		os.Exit(1)
