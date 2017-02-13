@@ -122,3 +122,29 @@ CREATE TABLE `articles` (
 ```
 
 ここでレコードを入れておいてもいいでしょう。
+
+### Step4. Go での DB 接続
+
+"database/sql" と "github.com/go-sql-driver/mysql" をインポートすることで、 MySQL への接続が可能となります。
+
+```go
+import (
+  ...
+  "database/sql"
+  _ "github.com/go-sql-driver/mysql"
+)
+```
+
+`main()` の中で
+
+```go
+datasource := `root:< 設定したパスワード >@tcp(localhost:3306)/go?parseTime=true&collation=utf8_general_ci&interpolateParams=true`
+```
+
+を定義しましょう。
+
+#### ex.
+
+- "database/sql" パッケージのドキュメントを読み、 MySQL に接続してみましょう。
+  - 必ずエラーチェックして下さい。
+  - defer 文について調べて下さい。また、 defer 文を用いて接続を閉じる処理を書いて下さい。
