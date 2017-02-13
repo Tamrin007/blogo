@@ -56,25 +56,25 @@ var (
 )
 
 func init() {
-  createFlag = flag.NewFlagSet("create", flag.ExitOnError)
+	createFlag = flag.NewFlagSet("create", flag.ExitOnError)
 	createFlag.StringVar(&title, "title", "", "記事のタイトル")
 }
 
 func run() error {
-  switch os.Args[1] {
+	switch os.Args[1] {
 	case "create":
 		createFlag.Parse(os.Args[2:])
 		if title == "" {
 			return fmt.Errorf("The title must not be empty")
 		}
-    fmt.Println("title: ", title)
+		fmt.Println("title: ", title)
   }
 
   return nil
 }
 
 func main() {
-  err = run()
+	err = run()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error: %s\n", err.Error())
 		os.Exit(1)
@@ -129,9 +129,9 @@ CREATE TABLE `articles` (
 
 ```go
 import (
-  ...
-  "database/sql"
-  _ "github.com/go-sql-driver/mysql"
+	...
+	"database/sql"
+	_ "github.com/go-sql-driver/mysql"
 )
 ```
 
@@ -158,8 +158,8 @@ datasource := `root:< 設定したパスワード >@tcp(localhost:3306)/go?parse
 package article
 
 import (
-  "database/sql"
-  "time"
+	"database/sql"
+	"time"
 )
 
 type Article struct {
