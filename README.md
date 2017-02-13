@@ -148,3 +148,36 @@ datasource := `root:< 設定したパスワード >@tcp(localhost:3306)/go?parse
 - "database/sql" パッケージのドキュメントを読み、 MySQL に接続してみましょう。
   - 必ずエラーチェックして下さい。
   - defer 文について調べて下さい。また、 defer 文を用いて接続を閉じる処理を書いて下さい。
+
+### Step5. DB 操作用のパッケージを作成する
+
+`db/` ディレクトリを用意し、以下の内容の `article.go` を作成しましょう。
+
+```go
+package article
+
+import (
+  "database/sql"
+  "time"
+)
+
+type Article struct {
+	CreatedAt *time.Time
+	UpdatedAt *time.Time
+}
+
+// InsertArticle inserts article to DB.
+func InsertArticle(db *sql.DB, title string, body string) {
+
+}
+```
+
+- `Article` 構造体に `ID`, `Title`, `Body` フィールドを追加して下さい。
+- DB にレコードを追加する `InsertArticle()` を完成させて下さい。
+- `main` パッケージで "github.com/Tamrin007/blogo/db" をインポートして下さい。
+- `run()` 内で create 処理の際に `InsertArticle` を呼び出して下さい。
+  - レコードが挿入されたか MySQL で確認して下さい。
+- `ReadArticle()`, `UpdateArticle()`, `DeleteArticle()` もそれぞれ作成して下さい。
+  - `ReadArticle()` は `Article` 構造体を返しましょう。
+  - どの関数もエラーは必ず返すようにしましょう。
+  - 作成した関数を read, update, delete 処理の際に呼び出し、結果を出力して下さい。
