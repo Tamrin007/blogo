@@ -62,6 +62,9 @@ func init() {
 }
 
 func run() error {
+  if len(os.Args) < 2 {
+    return fmt.Errorf("blogo needs sub command")
+  }
 	switch os.Args[1] {
 	case "create":
 		createFlag.Parse(os.Args[2:])
